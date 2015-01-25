@@ -1,7 +1,13 @@
 {
   "name": "custom-phaser-template",
   "version": "1.0.0",
+  "description": "Template for bootstrapping Phaser projects with Grunt, Bower, and RequireJS",
+  "repository": {
+  	"type" : "git",
+  	"url" : "http://github.com/npm/npm.git"
+  },
   "devDependencies": {
+    "bower": "^1.3.12",
     "grunt-cli": "^0.1.13"
   }
 }
