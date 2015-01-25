@@ -1,0 +1,7 @@
+{
+  "name": "custom-phaser-template",
+  "version": "1.0.0",
+  "devDependencies": {
+    "grunt-cli": "^0.1.13"
+  }
+}
