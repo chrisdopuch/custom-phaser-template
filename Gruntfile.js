@@ -1,4 +1,3 @@
-'use strict';
 module.exports = function(grunt) {
     grunt.initConfig({
         "bower-install-simple": {
@@ -31,15 +30,32 @@ module.exports = function(grunt) {
                     'build/js/requirejs/require.js': ['bower_components/requirejs/require.js'],
                     'build/js/requirejs/r.js': ['bower_components/r.js/dist/r.js']
                 }
+            },
+            underscore: {
+                files: {
+                    'build/js/underscore/underscore.js': ['bower_components/underscore/underscore.js'],
+                    'deploy/js/underscore/underscore-min.js': ['bower_components/underscore/underscore-min.js'],
+                    'deploy/js/underscore/underscore-min.map': ['bower_components/underscore/underscore-min.map']
+                }
             }
-        }
+        },
+        jshint: {
+            files: ['Gruntfile.js', 'build/js/app/**/*.js'],
+            options: {
+                globals: {
+                    jQuery: false
+                }
+            }
+        },
     });
 
     grunt.loadNpmTasks("grunt-bower-install-simple");
     grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
 
     grunt.registerTask('bower', [
       'bower-install-simple',
       'concat'
     ]);
+    grunt.registerTask('default', ['jshint', 'bower']);
 };
