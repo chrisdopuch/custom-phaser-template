@@ -1,0 +1,22 @@
+{
+  "name": "custom-phaser-template",
+  "version": "1.0.0",
+  "homepage": "https://github.com/chrisdopuch/custom-phaser-template",
+  "authors": [
+    "Chris Dopuch <chris.dopuch@gmail.com>"
+  ],
+  "description": "Template for bootstrapping Phaser projects with Grunt, Bower, and RequireJS",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "phaser-official": "~2.2.2",
+    "requirejs": "~2.1.15",
+    "r.js": "~2.1.15"
+  }
+}
