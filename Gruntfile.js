@@ -25,8 +25,7 @@ module.exports = function(grunt) {
             },
             requirejs: {
                 files: {
-                    'build/js/requirejs/require.js': ['bower_components/requirejs/require.js'],
-                    'build/js/requirejs/r.js': ['bower_components/r.js/dist/r.js']
+                    'build/js/requirejs/require.js': ['bower_components/requirejs/require.js']
                 }
             },
             underscore: {
