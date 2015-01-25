@@ -20,9 +20,7 @@ module.exports = function(grunt) {
             phaser: {
                 files: {
                     'build/js/phaser/phaser.js': ['bower_components/phaser-official/build/phaser.js'],
-                    'deploy/js/phaser/phaser.min.js': ['bower_components/phaser-official/build/phaser.min.js'],
-                    'build/js/phaser/phaser.map': ['bower_components/phaser-official/build/phaser.map'],
-                    'deploy/js/phaser/phaser.map': ['bower_components/phaser-official/build/phaser.map']
+                    'build/js/phaser/phaser.map': ['bower_components/phaser-official/build/phaser.map']
                 }
             },
             requirejs: {
@@ -34,12 +32,16 @@ module.exports = function(grunt) {
             underscore: {
                 files: {
                     'build/js/underscore/underscore.js': ['bower_components/underscore/underscore.js'],
-                    'deploy/js/underscore/underscore-min.js': ['bower_components/underscore/underscore-min.js'],
                     'deploy/js/underscore/underscore-min.map': ['bower_components/underscore/underscore-min.map']
+                }
+            },
+            jquery: {
+                files: {
+                    'build/js/jquery/jquery.js': ['bower_components/jquery/dist/jquery.js']
                 }
             }
         },
-        jshint: {
+        "jshint": {
             files: ['Gruntfile.js', 'build/js/app/**/*.js'],
             options: {
                 globals: {
@@ -47,15 +49,82 @@ module.exports = function(grunt) {
                 }
             }
         },
+        "connect": {
+            build: {
+                options: {
+                    port: 8000,
+                    base: 'build',
+                    keepalive: true
+                }
+            },
+            deploy: {
+                options: {
+                    port: 8001,
+                    base: 'deploy',
+                    keepalive: true
+                }
+            }
+        },
+        "requirejs": {
+            compile: {
+                options: {
+                    dir: "deploy",
+                    appDir: "build",
+                    optimize: "uglify",
+                    fileExclusionRegExp: /^assets$/ // ignore assets directory, imagemin will handle this instead
+                }
+            }
+        },
+        "imagemin": {
+            png: {
+                options: {
+                    optimizationLevel: 7
+                },
+                files: [
+                        {
+                        expand: true,
+                        cwd: 'build/assets/',
+                        src: ['**/*.png'],
+                        dest: 'deploy/assets/',
+                        ext: '.png'
+                    }
+                ]
+            },
+            jpg: {
+                options: {
+                    progressive: true
+                },
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'build/assets/',
+                        src: ['**/*.jpg'],
+                        dest: 'deploy/assets/',
+                        ext: '.jpg'
+                    }
+                ]
+            }
+        }
     });
 
     grunt.loadNpmTasks("grunt-bower-install-simple");
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-connect');
+    grunt.loadNpmTasks('grunt-contrib-requirejs');
+    grunt.loadNpmTasks('grunt-contrib-imagemin');
 
+    // Bower integration
     grunt.registerTask('bower', [
       'bower-install-simple',
       'concat'
     ]);
-    grunt.registerTask('default', ['jshint', 'bower']);
+
+    // Web Servers
+    grunt.registerTask('server-dev', ['connect:build']);
+    grunt.registerTask('server-prod', ['connect:deploy']);
+    grunt.registerTask('server', ['server-dev']);
+
+    grunt.registerTask('deploy', ['jshint', 'bower', 'requirejs', 'imagemin']);
+    grunt.registerTask('default', ['jshint']);
 };
