@@ -17,13 +17,10 @@
  
     require([
         'phaser',
-        'underscore',
         'app/game'
     ],
     function (
         Phaser,
-        _,
-        Game
     ) {
         var game = new Game();
         game.start();
