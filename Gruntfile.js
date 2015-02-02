@@ -19,24 +19,24 @@ module.exports = function(grunt) {
         "concat": {
             phaser: {
                 files: {
-                    'build/js/phaser/phaser.js': ['bower_components/phaser-official/build/phaser.js'],
-                    'build/js/phaser/phaser.map': ['bower_components/phaser-official/build/phaser.map']
+                    'build/js/lib/phaser/phaser.js': ['bower_components/phaser-official/build/phaser.js'],
+                    'build/js/lib/phaser/phaser.map': ['bower_components/phaser-official/build/phaser.map']
                 }
             },
             requirejs: {
                 files: {
-                    'build/js/requirejs/require.js': ['bower_components/requirejs/require.js']
+                    'build/js/lib/requirejs/require.js': ['bower_components/requirejs/require.js']
                 }
             },
             underscore: {
                 files: {
-                    'build/js/underscore/underscore.js': ['bower_components/underscore/underscore.js'],
-                    'deploy/js/underscore/underscore-min.map': ['bower_components/underscore/underscore-min.map']
+                    'build/js/lib/underscore/underscore.js': ['bower_components/underscore/underscore.js'],
+                    'deploy/js/lib/underscore/underscore-min.map': ['bower_components/underscore/underscore-min.map']
                 }
             },
             jquery: {
                 files: {
-                    'build/js/jquery/jquery.js': ['bower_components/jquery/dist/jquery.js']
+                    'build/js/lib/jquery/jquery.js': ['bower_components/jquery/dist/jquery.js']
                 }
             }
         },

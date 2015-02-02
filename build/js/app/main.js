@@ -4,9 +4,9 @@
     requirejs.config({
         baseUrl: "js/",
         paths: {
-            phaser: 'phaser/phaser',
-            underscore: 'underscore/underscore',
-            jquery: 'jquery/jquery'
+            phaser: 'lib/phaser/phaser',
+            underscore: 'lib/underscore/underscore',
+            jquery: 'lib/jquery/jquery'
         },
         shim: {
             'phaser': {
@@ -17,10 +17,11 @@
  
     require([
         'phaser',
-        'app/game'
+        'app/Game'
     ],
     function (
         Phaser,
+        Game
     ) {
         var game = new Game();
         game.start();
